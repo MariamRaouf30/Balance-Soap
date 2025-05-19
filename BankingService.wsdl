@@ -56,7 +56,7 @@
 
   <service name="BankingService">
     <port name="BankingPort" binding="tns:BankingBinding">
-      <soap:address location="http://localhost:8080/BankingService"/>
+      <soap:address location="https://balance-soap-banking-demo.apps.6829c0dcd44a1f25f511e131.ap1.techzone.ibm.com/BankingService"/>
     </port>
   </service>
 
