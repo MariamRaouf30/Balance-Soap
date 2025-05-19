@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://example.com/banking"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/banking"
+             name="BankingService">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/banking">
+      <xsd:element name="GetBalanceRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="AccountNumber" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetBalanceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Balance" type="xsd:decimal"/>
+            <xsd:element name="Currency" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="GetBalanceRequest">
+    <part name="parameters" element="tns:GetBalanceRequest"/>
+  </message>
+  <message name="GetBalanceResponse">
+    <part name="parameters" element="tns:GetBalanceResponse"/>
+  </message>
+
+  <portType name="BankingPortType">
+    <operation name="GetBalance">
+      <input message="tns:GetBalanceRequest"/>
+      <output message="tns:GetBalanceResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="BankingBinding" type="tns:BankingPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetBalance">
+      <soap:operation soapAction="GetBalance"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="BankingService">
+    <port name="BankingPort" binding="tns:BankingBinding">
+      <soap:address location="http://localhost:8080/BankingService"/>
+    </port>
+  </service>
+
+</definitions>

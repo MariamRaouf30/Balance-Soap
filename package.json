@@ -1,0 +1,12 @@
+{
+  "name": "soap-mock",
+  "version": "1.0.0",
+  "description": "Simple SOAP mock server for banking demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "soap": "^0.41.0"
+  }
+}
