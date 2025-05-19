@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
 });
 
 // Listen on port 8080
-server.listen(8080, () => {
+server.listen(8080,'0.0.0.0', () => {
   console.log('SOAP mock server listening on port 8080');
 });
 
